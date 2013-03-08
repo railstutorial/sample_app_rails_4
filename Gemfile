@@ -14,7 +14,7 @@ group :test do
   gem 'capybara', github: 'jnicklas/capybara'
   gem 'rb-fsevent', '0.9.3', :require => false
   gem 'growl', '1.0.3'
-  gem 'launchy'
+  # gem 'launchy', '2.2.0'
 end
 
 group :assets do
