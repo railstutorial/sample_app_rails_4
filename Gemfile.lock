@@ -46,6 +46,8 @@ GEM
       tzinfo (~> 0.3.33)
     arel (4.0.0.beta1)
     atomic (1.0.1)
+    bootstrap-sass (2.3.0.1)
+      sass (~> 3.2)
     builder (3.1.4)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
@@ -176,6 +178,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (= 2.3.0.1)
   capybara!
   coffee-rails (= 4.0.0.beta1)
   growl (= 1.0.3)
