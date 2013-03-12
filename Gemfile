@@ -13,10 +13,12 @@ group :development, :test do
 end
 
 group :test do
+  gem 'xpath',    github: 'jnicklas/xpath'
   gem 'capybara', github: 'jnicklas/capybara'
   gem 'rb-fsevent', '0.9.3', :require => false
   gem 'growl', '1.0.3'
   # gem 'launchy', '2.2.0'
+  gem 'factory_girl_rails', '4.2.0'
 end
 
 group :assets do
