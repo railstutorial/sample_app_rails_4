@@ -17,3 +17,4 @@ doc/
 .DS_Store
 .idea
 .rvmrc
+.ruby-*
