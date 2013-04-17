@@ -6,8 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/railstutorial/spork-rails.git
-  revision: 8b49e3d6ea85b2f1d23eb3fb148b7e971eb4e614
-  branch: rails-4
+  revision: 5db525af2f917047057f546bc1ac2574d1c6b11e
   specs:
     spork-rails (3.2.1)
       spork (>= 1.0rc0)
