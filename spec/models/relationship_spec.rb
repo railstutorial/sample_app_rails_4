@@ -13,8 +13,8 @@ describe Relationship do
   describe "follower methods" do    
     it { should respond_to(:follower) }
     it { should respond_to(:followed) }
-    its(:follower) { should eql(follower) }
-    its(:followed) { should eql(followed) }
+    its(:follower) { should eq follower }
+    its(:followed) { should eq followed }
   end
 
   describe "when followed id is not present" do
