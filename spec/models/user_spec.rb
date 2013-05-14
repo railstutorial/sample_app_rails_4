@@ -84,6 +84,13 @@ describe User do
     
     it { should_not be_valid }
   end
+  
+  describe "when password is not present" do
+    before do
+      @user = User.new(name: "Example User", email: "user@example.com")
+    end
+    it { should_not be_valid }
+  end
 
   describe "when password confirmation is missing" do
     before do
