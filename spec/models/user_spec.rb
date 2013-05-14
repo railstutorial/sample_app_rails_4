@@ -85,8 +85,24 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "when password is not present" do
+    before do
+      @user = User.new(name: "Example User", email: "user@example.com", 
+                       password: " ", password_confirmation: " ")
+    end
+    it { should_not be_valid }
+  end
+
+  describe "when password doesn't match confirmation" do
+    before { @user.password_confirmation = "mismatch" }
+    it { should_not be_valid }
+  end
+
   describe "when password confirmation is nil" do
-    before { @user.password_confirmation = nil }
+    before do
+      @user = User.new(name: "Michael Hartl", email: "mhartl@example.com",
+                       password: "foobar", password_confirmation: nil)
+    end
     it { should_not be_valid }
   end
 
@@ -131,16 +147,11 @@ describe User do
     end
 
     it "should destroy associated microposts" do
-      microposts = @user.microposts.dup.to_a
+      microposts = @user.microposts.to_a
       @user.destroy
       expect(microposts).not_to be_empty
       microposts.each do |micropost|
         expect(Micropost.where(id: micropost.id)).to be_empty
-      end
-      microposts.each do |micropost|
-        expect do
-          Micropost.find(micropost)
-        end.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
