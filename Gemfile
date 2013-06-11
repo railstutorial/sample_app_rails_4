@@ -25,16 +25,13 @@ group :test do
   gem 'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
 
-  # Uncomment these lines on OS X.
-  gem 'rb-fsevent', '0.9.3', :require => false
+  # Uncomment this line on OS X.
   gem 'growl', '1.0.3'
 
   # Uncomment these lines on Linux.
-  # gem 'rb-inotify', '0.9.0'
   # gem 'libnotify', '0.8.0'
 
   # Uncomment these lines on Windows.
-  # gem 'rb-fchange', '0.0.6'
   # gem 'rb-notifu', '0.0.4'
   # gem 'win32console', '1.3.2'
 end

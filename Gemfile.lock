@@ -232,7 +232,6 @@ DEPENDENCIES
   jquery-rails (= 2.2.1)
   pg (= 0.15.1)
   rails (= 4.0.0.rc1)
-  rb-fsevent (= 0.9.3)
   rspec-rails (= 2.13.1)
   sass-rails (= 4.0.0.rc1)
   sdoc (= 0.3.20)
