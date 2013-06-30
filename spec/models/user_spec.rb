@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(name: "Example User", email: "user@example.com", 
+    @user = User.new(name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar")
   end
 
@@ -61,7 +61,7 @@ describe User do
       addresses.each do |invalid_address|
         @user.email = invalid_address
         expect(@user).not_to be_valid
-      end      
+      end
     end
   end
 
@@ -71,7 +71,7 @@ describe User do
       addresses.each do |valid_address|
         @user.email = valid_address
         expect(@user).to be_valid
-      end      
+      end
     end
   end
 
@@ -81,13 +81,13 @@ describe User do
       user_with_same_email.email = @user.email.upcase
       user_with_same_email.save
     end
-    
+
     it { should_not be_valid }
   end
 
   describe "when password is not present" do
     before do
-      @user = User.new(name: "Example User", email: "user@example.com", 
+      @user = User.new(name: "Example User", email: "user@example.com",
                        password: " ", password_confirmation: " ")
     end
     it { should_not be_valid }
@@ -95,14 +95,6 @@ describe User do
 
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = "mismatch" }
-    it { should_not be_valid }
-  end
-
-  describe "when password confirmation is nil" do
-    before do
-      @user = User.new(name: "Michael Hartl", email: "mhartl@example.com",
-                       password: "foobar", password_confirmation: nil)
-    end
     it { should_not be_valid }
   end
 
@@ -131,17 +123,17 @@ describe User do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
-  
+
   describe "micropost associations" do
-    
+
     before { @user.save }
-    let!(:older_micropost) do 
+    let!(:older_micropost) do
       FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
     end
     let!(:newer_micropost) do
       FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
     end
-        
+
     it "should have the right microposts in the right order" do
       expect(@user.microposts.to_a).to eq [newer_micropost, older_micropost]
     end
@@ -178,7 +170,7 @@ describe User do
   end
 
   describe "following" do
-    let(:other_user) { FactoryGirl.create(:user) }    
+    let(:other_user) { FactoryGirl.create(:user) }
     before do
       @user.save
       @user.follow!(other_user)
@@ -191,10 +183,10 @@ describe User do
       subject { other_user }
       its(:followers) { should include(@user) }
     end
-    
+
     describe "and unfollowing" do
       before { @user.unfollow!(other_user) }
-      
+
       it { should_not be_following(other_user) }
       its(:followed_users) { should_not include(other_user) }
     end
