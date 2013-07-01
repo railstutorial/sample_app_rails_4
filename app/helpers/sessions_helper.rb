@@ -1,10 +1,11 @@
 module SessionsHelper
 
   def sign_in(user)
+    user.new_remember_token!
     cookies.permanent[:remember_token] = user.remember_token
     self.current_user = user
   end
-  
+
   def signed_in?
     !current_user.nil?
   end
@@ -14,13 +15,14 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= User.find_by(remember_token: cookies[:remember_token])
+    remember_token = User.encrypted_token(cookies[:remember_token])
+    @current_user ||= User.find_by(remember_token: remember_token)
   end
 
   def current_user?(user)
     user == current_user
   end
-  
+
   def signed_in_user
     unless signed_in?
       store_location
