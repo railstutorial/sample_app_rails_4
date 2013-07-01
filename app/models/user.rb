@@ -15,11 +15,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
-  def new_remember_token!
-    create_remember_token
-    save!(validate: false)
-  end
-
   def feed
     Micropost.from_users_followed_by(self)
   end
@@ -36,13 +31,17 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
-  def User.encrypted_token(token)
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def User.encrypt(token)
     Digest::SHA1.hexdigest(token)
   end
 
   private
 
     def create_remember_token
-      self.remember_token = User.encrypted_token(SecureRandom.urlsafe_base64)
+      self.remember_token = User.encrypt(User.new_remember_token)
     end
 end
