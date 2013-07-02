@@ -36,7 +36,12 @@ class User < ActiveRecord::Base
   end
 
   def User.encrypt(token)
-    Digest::SHA1.hexdigest(token)
+    cost = if ActiveModel::SecurePassword.min_cost
+             BCrypt::Engine::MIN_COST
+           else
+             BCrypt::Engine::DEFAULT_COST
+           end
+    BCrypt::Password.create(token, cost: cost)
   end
 
   private
