@@ -6,17 +6,17 @@ describe "Authentication" do
 
   describe "signin page" do
     before { visit signin_path }
-    
+
     it { should have_content('Sign in') }
     it { should have_title('Sign in') }
   end
 
   describe "signin" do
     before { visit signin_path }
-    
+
     describe "with invalid information" do
       before { click_button "Sign in" }
-      
+
       it { should have_title('Sign in') }
       it { should have_error_message('Invalid') }
 
@@ -33,7 +33,7 @@ describe "Authentication" do
         fill_in "Password", with: user.password
         click_button "Sign in"
       end
-      
+
       it { should have_title(user.name) }
       it { should have_link('Users',       href: users_path) }
       it { should have_link('Profile',     href: user_path(user)) }
@@ -62,7 +62,7 @@ describe "Authentication" do
         end
 
         describe "after signing in" do
-          
+
           it "should render the desired protected page" do
             expect(page).to have_title('Edit user')
           end
@@ -90,7 +90,7 @@ describe "Authentication" do
           before { visit following_user_path(user) }
           it { should have_title('Sign in') }
         end
-        
+
         describe "visiting the followers page" do
           before { visit followers_user_path(user) }
           it { should have_title('Sign in') }
@@ -98,7 +98,7 @@ describe "Authentication" do
       end
 
       describe "in the Microposts controller" do
-        
+
         describe "submitting to the create action" do
           before { post microposts_path }
           specify { expect(response).to redirect_to(signin_path) }
@@ -118,7 +118,7 @@ describe "Authentication" do
 
         describe "submitting to the destroy action" do
           before { delete relationship_path(1) }
-          specify { expect(response).to redirect_to(signin_path) }          
+          specify { expect(response).to redirect_to(signin_path) }
         end
       end
     end
@@ -126,7 +126,7 @@ describe "Authentication" do
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
-      before { sign_in user }
+      before { sign_in user, no_capybara: true }
 
       describe "visiting Users#edit page" do
         before { visit edit_user_path(wrong_user) }
@@ -142,13 +142,13 @@ describe "Authentication" do
     describe "as non-admin user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
-      
-      before { sign_in non_admin }
-      
+
+      before { sign_in non_admin, no_capybara: true }
+
       describe "submitting a DELETE request to the Users#destroy action" do
         before { delete user_path(user) }
-        specify { expect(response).to redirect_to(root_path) }        
+        specify { expect(response).to redirect_to(root_path) }
       end
     end
-  end  
+  end
 end
