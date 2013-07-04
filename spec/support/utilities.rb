@@ -6,7 +6,9 @@ def sign_in(user)
   fill_in "Password", with: user.password
   click_button "Sign in"
   # Sign in when not using Capybara as well.
-  cookies[:remember_token] = user.remember_token
+  remember_token = User.new_remember_token
+  cookies[:remember_token] = remember_token
+  user.update_attribute(:remember_token, User.my_encrypt(remember_token))
 end
 
 RSpec::Matchers.define :have_error_message do |message|

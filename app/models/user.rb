@@ -15,6 +15,21 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def User.my_encrypt(token)
+    return token
+    if token.nil?
+      ""
+    else
+      token.reverse
+      # Digest::SHA1.hexdigest(token)
+      token
+    end
+  end
+
   def feed
     Micropost.from_users_followed_by(self)
   end
@@ -34,6 +49,6 @@ class User < ActiveRecord::Base
   private
 
     def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
+      self.remember_token = User.my_encrypt(User.new_remember_token)
     end
 end
