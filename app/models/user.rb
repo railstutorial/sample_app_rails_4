@@ -39,19 +39,6 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
-  end
-
-  def User.encrypt(token)
-    cost = if ActiveModel::SecurePassword.min_cost
-             BCrypt::Engine::MIN_COST
-           else
-             BCrypt::Engine::DEFAULT_COST
-           end
-    BCrypt::Password.create(token, cost: cost)
-  end
-
   private
 
     def create_remember_token
