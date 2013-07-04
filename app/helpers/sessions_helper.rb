@@ -8,7 +8,11 @@ module SessionsHelper
   end
 
   def signed_in?
-    !current_user.nil?
+    if !cookies[:remember_token]
+      false
+    else
+      !current_user.nil?
+    end
   end
 
   def current_user=(user)
