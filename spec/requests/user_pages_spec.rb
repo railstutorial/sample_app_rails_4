@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "User pages" do
-  
+
   subject { page }
 
   describe "index" do
@@ -10,10 +10,10 @@ describe "User pages" do
       sign_in user
       visit users_path
     end
-    
+
     it { should have_title('All users') }
     it { should have_content('All users') }
-    
+
     describe "pagination" do
 
       before(:all) { 30.times { FactoryGirl.create(:user) } }
@@ -47,7 +47,7 @@ describe "User pages" do
       end
     end
   end
-  
+
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
@@ -67,7 +67,7 @@ describe "User pages" do
     describe "follow/unfollow buttons" do
       let(:other_user) { FactoryGirl.create(:user) }
       before { sign_in user }
-      
+
       describe "following a user" do
         before { visit user_path(other_user) }
 
@@ -114,7 +114,7 @@ describe "User pages" do
       end
     end
   end
-  
+
   describe "signup page" do
     before { visit signup_path }
 
@@ -196,7 +196,7 @@ describe "User pages" do
 
     describe "forbidden attributes" do
       let(:params) do
-        { user: { admin: true, password: user.password, 
+        { user: { admin: true, password: user.password,
                   password_confirmation: user.password } }
       end
       before { patch user_path(user), params }

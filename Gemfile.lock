@@ -87,6 +87,7 @@ GEM
     formatador (0.2.4)
     gherkin (2.12.0)
       multi_json (~> 1.3)
+    growl (1.0.3)
     guard (1.8.1)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -226,6 +227,7 @@ DEPENDENCIES
   database_cleaner!
   factory_girl_rails (= 4.2.0)
   faker (= 1.1.2)
+  growl (= 1.0.3)
   guard-rspec (= 2.5.0)
   guard-spork (= 1.5.0)
   jbuilder (= 1.0.2)
