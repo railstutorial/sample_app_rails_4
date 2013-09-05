@@ -129,12 +129,17 @@ describe "Authentication" do
       before { sign_in user, no_capybara: true }
 
       describe "visiting Users#edit page" do
-        before { visit edit_user_path(wrong_user) }
-        it { should_not have_title(full_title('Edit user')) }
+        before { get edit_user_path(wrong_user) }
+        specify { expect(response.body).not_to match(full_title('Edit user')) }
+        specify { expect(response).to redirect_to(root_url) }
       end
 
       describe "submitting a PATCH request to the Users#update action" do
-        before { patch user_path(wrong_user) }
+        let(:params) do
+          { user: { password: wrong_user.password,
+                    password_confirmation: wrong_user.password } }
+        end
+        before { patch user_path(wrong_user), params }
         specify { expect(response).to redirect_to(root_url) }
       end
     end
