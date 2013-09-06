@@ -201,7 +201,10 @@ describe "User pages" do
         { user: { admin: true, password: user.password,
                   password_confirmation: user.password } }
       end
-      before { patch user_path(user), params }
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(user), params
+      end
       specify { expect(user.reload).not_to be_admin }
     end
   end
