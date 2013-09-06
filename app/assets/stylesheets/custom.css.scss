@@ -5,8 +5,8 @@
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -90,12 +90,12 @@ footer {
   color: $grayLight;
   a {
     color: $gray;
-    &:hover { 
+    &:hover {
       color: $grayDarker;
     }
-  }  
-  small { 
-    float: left; 
+  }
+  small {
+    float: left;
   }
   ul {
     float: right;
@@ -181,7 +181,6 @@ aside {
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
-  padding: 10px;
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -223,7 +222,7 @@ input {
 .microposts {
   list-style: none;
   margin: 10px 0 0 0;
-  
+
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
