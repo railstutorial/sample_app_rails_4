@@ -14,9 +14,7 @@ development:
 # Do not set this db to the same as development or production.
 test: &test
   adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  database: ":memory:"
 
 production:
   adapter: sqlite3
