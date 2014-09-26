@@ -1,0 +1,15 @@
+web:
+  build: .
+  links:
+    - database:database
+  ports:
+    - "3000:3000"
+  environment:
+    RAILS_ENV: production
+    SECRET_KEY_BASE: ${SECRET_KEY}
+    MYSQL_PASS: ${PASS}
+    MYSQL_USER: root
+database:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: ${PASS}
