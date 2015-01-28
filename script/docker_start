@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+cd /usr/src/app
+
+rake db:create
+rake db:migrate
+
+exec rails s $*
