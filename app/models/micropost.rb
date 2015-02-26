@@ -5,7 +5,7 @@ class Micropost < ActiveRecord::Base
   validates :user_id, presence: true
 
   def html_content
-    content
+    CGI::escapeHTML( content )
   end
 
   # Returns microposts from the users being followed by the given user.
