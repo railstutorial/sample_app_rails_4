@@ -5,7 +5,8 @@ class Micropost < ActiveRecord::Base
   validates :user_id, presence: true
 
   def html_content
-    CGI::escapeHTML( content )
+    html = CGI::escapeHTML( content )
+    html = html.gsub(/(http:\/\/[-A-Za-z0-9\.]+)/, '<a href="\1">\1</a>')
   end
 
   # Returns microposts from the users being followed by the given user.
