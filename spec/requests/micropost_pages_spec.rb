@@ -24,9 +24,18 @@ describe "Micropost pages" do
 
     describe "with valid information" do
 
-      before { fill_in 'micropost_content', with: "Lorem ipsum" }
+      before do
+        fill_in 'micropost_content', with: "Lorem ipsum"
+        fill_in 'micropost_tag', with: "My Tag"
+      end
+
       it "should create a micropost" do
         expect { click_button "Post" }.to change(Micropost, :count).by(1)
+      end
+
+      it "should save the tag" do
+        click_button "Post"
+        expect(Micropost.last.tag).to eql "My Tag"
       end
     end
   end
