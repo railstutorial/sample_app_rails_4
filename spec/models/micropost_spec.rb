@@ -12,6 +12,11 @@ describe Micropost do
 
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }
+  
+  describe "can have an image url" do
+    before { @micropost.image_url = 'https://www.nasa.gov/mission_pages/apollo/images.html'}
+    it { should be_valid }
+  end
 
   describe "when user_id is not present" do
     before { @micropost.user_id = nil }
