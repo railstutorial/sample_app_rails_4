@@ -28,6 +28,14 @@ describe "Micropost pages" do
       it "should create a micropost" do
         expect { click_button "Post" }.to change(Micropost, :count).by(1)
       end
+      
+      describe "with image url" do
+        before { fill_in 'micropost_image_url', with: "https://www.nasa.gov/mission_pages/apollo/images.html" }
+        
+        it "should create a micropost" do
+          expect { click_button "Post" }.to change(Micropost, :count).by(1)
+        end
+      end
     end
   end
 
