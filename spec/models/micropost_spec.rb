@@ -18,6 +18,14 @@ describe Micropost do
     it { should be_valid }
   end
 
+  describe 'can not have an invalid image url' do
+    before { @micropost.image_url = 'not a url'}
+    it do
+      should_not be_valid
+      expect(@micropost.errors[:image_url]).to eq(['not a valid url'])
+    end
+  end
+
   describe 'when user_id is not present' do
     before { @micropost.user_id = nil }
     it { should_not be_valid }
