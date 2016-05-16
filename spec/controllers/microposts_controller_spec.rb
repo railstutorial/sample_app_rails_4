@@ -13,6 +13,13 @@ describe MicropostsController do
         post :create, micropost: {content: 'Test'}
       end.to change(Micropost, :count).by(1)
     end
+    
+    it 'should increment the Micropost count if image_url is provided' do
+      expect do
+        post :create, micropost: {content: 'Test', image_url: 'https://www.nasa.gov/mission_pages/apollo/images.html'}
+        expect(Micropost.last.image_url).to eq('https://www.nasa.gov/mission_pages/apollo/images.html')
+      end.to change(Micropost, :count).by(1)
+    end
   end
 
   describe 'destroying a micropost' do
