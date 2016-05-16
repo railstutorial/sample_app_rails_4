@@ -3,6 +3,7 @@
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
+    <%= image_tag(feed_item.image_url) if feed_item.image_url.present? %>
     <span class="content"><%= feed_item.content %></span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
