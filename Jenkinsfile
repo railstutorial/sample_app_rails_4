@@ -4,17 +4,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'bundling'
+                sh 'bundle install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'bundle rspec'
+                junit '**/target/*.xml'
             }
         }
     }
