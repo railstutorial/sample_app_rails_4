@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RelationshipsController  do
+describe RelationshipsController , type: :controller do
 
 
   let(:user) { FactoryGirl.create(:user) }
@@ -12,7 +12,7 @@ describe RelationshipsController  do
   #   it { expect(cookies[:remember_token]).to be_nil } # now the variable is defined as nil.
   # end
 
-  describe "creating a relationship with Ajax", type: :request do
+  describe "creating a relationship with Ajax" do
 
     it "should increment the Relationship count" do
       expect do
@@ -26,7 +26,7 @@ describe RelationshipsController  do
     end
   end
 
-  describe "destroying a relationship with Ajax", type: :request do
+  describe "destroying a relationship with Ajax" do
 
     before { user.follow!(other_user) }
     let(:relationship) do
