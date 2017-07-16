@@ -1,11 +1,16 @@
 require 'spec_helper'
 
-describe RelationshipsController do
+describe RelationshipsController , type: :controller do
+
 
   let(:user) { FactoryGirl.create(:user) }
   let(:other_user) { FactoryGirl.create(:user) }
 
   before { sign_in user, no_capybara: true }
+
+  # describe 'something that requires cookies', type: :request do
+  #   it { expect(cookies[:remember_token]).to be_nil } # now the variable is defined as nil.
+  # end
 
   describe "creating a relationship with Ajax" do
 
