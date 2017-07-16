@@ -1,13 +1,18 @@
 require 'spec_helper'
 
-describe RelationshipsController do
+describe RelationshipsController  do
+
 
   let(:user) { FactoryGirl.create(:user) }
   let(:other_user) { FactoryGirl.create(:user) }
 
   before { sign_in user, no_capybara: true }
 
-  describe "creating a relationship with Ajax" do
+  # describe 'something that requires cookies', type: :request do
+  #   it { expect(cookies[:remember_token]).to be_nil } # now the variable is defined as nil.
+  # end
+
+  describe "creating a relationship with Ajax", type: :request do
 
     it "should increment the Relationship count" do
       expect do
@@ -21,7 +26,7 @@ describe RelationshipsController do
     end
   end
 
-  describe "destroying a relationship with Ajax" do
+  describe "destroying a relationship with Ajax", type: :request do
 
     before { user.follow!(other_user) }
     let(:relationship) do

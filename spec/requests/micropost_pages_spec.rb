@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Micropost pages" do
+describe "Micropost pages", type: :request do
 
   subject { page }
 
