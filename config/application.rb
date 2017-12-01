@@ -5,6 +5,8 @@
     require "action_controller/railtie"
     require "action_mailer/railtie"
     require "sprockets/railtie"
+    require 'prometheus/middleware/collector'
+    require 'prometheus/middleware/exporter'
     # require "rails/test_unit/railtie"
 
     # Assets should be precompiled for production (so we don't need the gems loaded then)
@@ -27,5 +29,8 @@
         I18n.enforce_available_locales = true
 
         config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+        config.middleware.use Prometheus::Middleware::Exporter
+        config.middleware.use Prometheus::Middleware::Collector
       end
     end
