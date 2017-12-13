@@ -11,6 +11,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 # gem 'prometheus-client-mmap', '~> 0.7.0.beta37'
 gem 'prometheus-client', '~> 0.7.1'
+gem 'influxdb-rails', '~> 0.4.3'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
